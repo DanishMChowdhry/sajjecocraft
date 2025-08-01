@@ -48,7 +48,7 @@
                  <ul class="list-unstyled">
                      <li><span class="menu-link">{{ $site_settings->phone_number }}</span></li>
                      <li><span class="menu-link">{{ $site_settings->email_address }}</span></li>
-                     <li><span class="menu-link">{{ $site_settings->address }}</span></li>
+                     <li><span class="menu-link"><a href="https://maps.app.goo.gl/FeLAuxu6i5BwBj686" target="_blank">{{ $site_settings->address }}</a></span></li>
                  </ul>
                  <ul class="social-links list-unstyled d-flex mb-0">
                      @if ($site_settings->facebook !== '#')
