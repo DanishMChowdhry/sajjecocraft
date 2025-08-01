@@ -14,7 +14,7 @@
             <tr>
                 <!-- First Column: Text Left-Aligned -->
                 <th style="width: 30%; padding: 10px; vertical-align: middle; text-align: left; border: none;">
-                    <h4>Sajj Decore</h4>
+                    <h4>Sajj Decor</h4>
                     <p>
                         Ahmedabad <br />
                         State: Gujarat <br />
@@ -186,8 +186,8 @@
                 Payment Condition :-<br /><br />
                 1. 100 % Advance with signed quotation.<br /><br />
                 www.sajjecocraft.com<br /><br />
-                Rajkot: Akshar Complex Nr.Jay Ganesh Showroom, 150 ft. Ring Road, Rajkot360005<br /><br />
-                Ahmedabad: Gopal Estate, Nr Sanatan Cross Road, Changodar Road, Ahmedabad382210<br /><br />
+                402, Decora Square, Opp. Sadhu Vasvani School, Sadhu Vasvani Road, Rajkot - 360005.<br/><br/>
+                Ahmedabad: Gopal Estate, Nr Sanatan Cross Road, Changodar Road, Ahmedabad382210<br/><br/>
             </td>
 
             <td style="font-size:15px; text-align:center; background-color: white; border: 1px solid black; padding:10px;">
