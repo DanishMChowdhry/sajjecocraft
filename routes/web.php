@@ -57,6 +57,8 @@ Route::controller(MainPageController::class)
         Route::get('/invoice/download/{enquiry_id}', [OrderController::class, 'generateFromEnquiry'])->name('invoice.download');
         Route::post('/guest-checkout', [OrderController::class, 'generateFromEnquiry'])->name('guest.checkout');
         Route::post('/invoices/from-cart', [InvoiceController::class, 'storeFromCartAndGeneratePDF'])->name('invoices.fromCart');
+        
+        Route::get('/invoice/{order_id}', [InvoiceController::class, 'downloadInvoice']);
 
     });
 

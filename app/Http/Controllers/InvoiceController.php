@@ -259,6 +259,26 @@ class InvoiceController extends Controller
 
 
 
+public function downloadInvoice($order_id)
+{
+    $invoice = Invoice::where('order_id', $order_id)->first();
 
+    if (!$invoice) {
+        abort(404, 'Invoice not found');
+    }
+        $subtotal = $invoice->total;
+        $gstAmount = $invoice->total * 0.18;
+        $totalWithGST = $invoice->total + $gstAmount;
+        $totalInWords = NumberToWords::convertNumberToWords($totalWithGST);
+        $pdf = PDF::loadView('pdf.invoice', [
+            'invoice' => $invoice,
+            'totalInWords' => $totalInWords,
+            'subtotal' => $subtotal,
+            'totalWithGST' => $totalWithGST,
+            'gstAmount' => $gstAmount,
+        ]);
+
+        return $pdf->download('invoice_' . $invoice->order_id . '.pdf');
+}
 
 }
