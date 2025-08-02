@@ -329,24 +329,24 @@ class InvoiceController extends Controller
         ]);
 
         // Ensure folder exists
-        $folderPath = public_path('invoices');
+        $folderPath = public_path('quotation');
         if (!File::exists($folderPath)) {
             File::makeDirectory($folderPath, 0775, true);
         }
 
         // Save PDF
-        $fileName = 'invoice_' . $enquiryId . '.pdf';
+        $fileName = 'quotation_' . $enquiryId . '.pdf';
         $filePath = $folderPath . '/' . $fileName;
         $pdf->save($filePath);
 
         // Public URL to PDF
-        $invoiceUrl = asset('public/invoices/' . $fileName);
+        $invoiceUrl = asset('public/quotation/' . $fileName);
 
         // Destroy cart after saving
         Cart::destroy();
 
         // Send WhatsApp message (replace this block with real API integration)
-        $whatsappMessage = "Hi $guestName, your invoice is ready.\nView/download it here: $invoiceUrl";
+        $whatsappMessage = "Hi $guestName, your quotation is ready.\nView/download it here: $invoiceUrl";
 
 
         // URL encode the message
@@ -358,7 +358,7 @@ class InvoiceController extends Controller
         // Redirect to WhatsApp
         return redirect($whatsappUrl);
 
-        return back()->with('success', 'Invoice generated and shared via WhatsApp link.');
+        return back()->with('success', 'Quotation generated and shared via WhatsApp link.');
 
     } catch (\Exception $e) {
         return back()->with('error', 'Something went wrong. ' . $e->getMessage());
