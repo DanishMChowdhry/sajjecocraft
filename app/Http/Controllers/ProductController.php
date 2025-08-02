@@ -71,7 +71,6 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'short_description' => 'nullable|string',
             'slug' => 'nullable|string|unique:products,slug',
-            'sku' => 'nullable|string|unique:products,sku',
             'status' => 'nullable|string|max:50',
             'stock' => 'nullable|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
@@ -95,12 +94,20 @@ class ProductController extends Controller
             'twitter_description' => 'nullable|string',
             'twitter_image' => 'nullable',
         ]);
+
+        // Get the current highest unique_id
+    $lastUniqueId = Product::max('unique_id') ?? 1000;
+
+    // Set the next unique_id
+    $nextUniqueId = $lastUniqueId + 1;
+
+    
         $product = new Product();
         $product->name = $request->name;
+        $product->unique_id = $nextUniqueId;
         $product->description = $request->description;
         $product->short_description = $request->short_description;
         $product->slug = Str::slug($request->input('name'));
-        $product->sku = $request->sku;
         $product->status = $request->status;
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;

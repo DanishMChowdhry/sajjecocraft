@@ -143,14 +143,23 @@
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <form action="{{ route('invoices.fromCart') }}" method="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="user_name" class="form-control" placeholder="Full name *" required>
+                            <label for="user_name">Full name *</label>
+                        </div>
+
+                        <!-- Form 1 -->
+                        <form id="generate_quote_form" action="{{ route('invoices.fromCart') }}" method="POST">
                             @csrf
-                            <div class="form-floating mb-3">
-                                <input type="text" name="name" class="form-control" placeholder="Full name *"
-                                    required>
-                                <label>Full name *</label>
-                            </div>
+                            <input required type="hidden" name="name" id="name_for_quote">
                             <button type="submit" class="btn btn-primary float-end">Generate Quote</button>
+                        </form>
+
+                        <!-- Form 2 -->
+                        <form id="share_whatsapp_form" action="{{ route('share_invoice_on_whatsapp') }}" method="POST">
+                            @csrf
+                            <input required type="hidden" name="name" id="name_for_whatsapp">
+                            <button type="submit" class="btn btn-success float-end me-2">Share on WhatsApp</button>
                         </form>
                     </div>
                 </div>
@@ -161,6 +170,44 @@
 @endsection
 
 @section('scripts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('user_name');
+            const quoteForm = document.getElementById('generate_quote_form');
+            const whatsappForm = document.getElementById('share_whatsapp_form');
+
+            function validateAndFill(form) {
+                const nameValue = nameInput.value.trim();
+
+                if (!nameValue) {
+                    alert("Please enter your full name.");
+                    nameInput.focus();
+                    return false;
+                }
+
+                // Set hidden inputs
+                document.getElementById('name_for_quote').value = nameValue;
+                document.getElementById('name_for_whatsapp').value = nameValue;
+
+                return true;
+            }
+
+            quoteForm.addEventListener('submit', function(e) {
+                if (!validateAndFill(quoteForm)) {
+                    e.preventDefault();
+                }
+            });
+
+            whatsappForm.addEventListener('submit', function(e) {
+                if (!validateAndFill(whatsappForm)) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

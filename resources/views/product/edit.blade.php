@@ -99,10 +99,10 @@
                             </div>
 
                             <!-- SKU Field -->
-                            <div class="mb-3">
+                            <div class="mb-3" hidden>
                                 <label for="sku" class="form-label">SKU</label>
-                                <input disabled type="text" class="form-control @error('sku') is-invalid @enderror" id="sku"
-                                    value="{{ old('sku', $product->sku) }}" name="sku">
+                                <input disabled type="text" class="form-control @error('sku') is-invalid @enderror"
+                                    id="sku" name="sku">
                                 @error('sku')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -243,7 +243,8 @@
 
                             <div class="mb-3">
                                 <label for="size" class="form-label">Size</label>
-                                <textarea type="text" name="size" id="size" class="form-control @error('size') is-invalid @enderror" value="{{ old('size',$product->size) }}">{{ $product->size }}</textarea>
+                                <textarea type="text" name="size" id="size" class="form-control @error('size') is-invalid @enderror"
+                                    value="{{ old('size', $product->size) }}">{{ $product->size }}</textarea>
                                 @error('size')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -311,7 +312,9 @@
                                     <div class="col-10">
                                         <label for="og_image" class="form-label">OpenGraph Image</label>
                                         <input type="file" class="form-control" id="og_image" name="og_image">
-                                        <div id="og_image_help" class="form-text">Recommended Size: 1200px x 630px <a href="{{ url('admin/product_delete_image/'.$product->id.'/og_image') }}">Delete This Image</a></div>
+                                        <div id="og_image_help" class="form-text">Recommended Size: 1200px x 630px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/og_image') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->og_image) }}" target="_blank"><img id="image_preview"
@@ -325,7 +328,9 @@
                                     <div class="col-12">
                                         <label for="og_image" class="form-label">OpenGraph Image</label>
                                         <input type="file" class="form-control" id="og_image" name="og_image">
-                                        <div id="og_image_help" class="form-text">Recommended Size: 1200px x 630px <a href="{{ url('admin/product_delete_image/'.$product->id.'/og_image') }}">Delete This Image</a></div>
+                                        <div id="og_image_help" class="form-text">Recommended Size: 1200px x 630px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/og_image') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     @error('og_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -342,7 +347,10 @@
                                         <input type="file" class="form-control" id="twitter_image"
                                             name="twitter_image">
                                         <div id="twitter_image_help" class="form-text">Recommended Size: 1200px x 675px
-                                         <a href="{{ url('admin/product_delete_image/'.$product->id.'/twitter_image') }}">Delete This Image</a></div>
+                                            <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/twitter_image') }}">Delete
+                                                This Image</a>
+                                        </div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->twitter_image) }}" target="_blank"><img
@@ -358,7 +366,10 @@
                                         <input type="file" class="form-control" id="twitter_image"
                                             name="twitter_image">
                                         <div id="twitter_image_help" class="form-text">Recommended Size: 1200px x 675px
-                                         <a href="{{ url('admin/product_delete_image/'.$product->id.'/twitter_image') }}">Delete This Image</a></div>
+                                            <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/twitter_image') }}">Delete
+                                                This Image</a>
+                                        </div>
                                     </div>
                                     @error('twitter_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -372,7 +383,9 @@
                                     <div class="col-10">
                                         <label for="main_image" class="form-label">Main Image</label>
                                         <input type="file" class="form-control" id="main_image" name="main_image">
-                                        <div id="main_image_help" class="form-text">Recommended Size: 330px x 400px <a href="{{ url('admin/product_delete_image/'.$product->id.'/main_image') }}">Delete This Image</a></div>
+                                        <div id="main_image_help" class="form-text">Recommended Size: 330px x 400px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/main_image') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->main_image) }}" target="_blank"><img
@@ -386,7 +399,9 @@
                                     <div class="col-12">
                                         <label for="main_image" class="form-label">Main Image</label>
                                         <input type="file" class="form-control" id="main_image" name="main_image">
-                                        <div id="main_image_help" class="form-text">Recommended Size: 330px x 400px <a href="{{ url('admin/product_delete_image/'.$product->id.'/main_image') }}">Delete This Image</a></div>
+                                        <div id="main_image_help" class="form-text">Recommended Size: 330px x 400px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/main_image') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     @error('main_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -399,7 +414,9 @@
                                     <div class="col-10">
                                         <label for="image_1" class="form-label">Image 1</label>
                                         <input type="file" class="form-control" id="image_1" name="image_1">
-                                        <div id="image_1_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_1image_1') }}">Delete This Image</a></div>
+                                        <div id="image_1_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_1image_1') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_1) }}" target="_blank"><img id="image_preview"
@@ -427,7 +444,9 @@
                                     <div class="col-10">
                                         <label for="image_2" class="form-label">Image 2</label>
                                         <input type="file" class="form-control" id="image_2" name="image_2">
-                                        <div id="image_2_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_2') }}">Delete This Image</a></div>
+                                        <div id="image_2_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_2') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_2) }}" target="_blank"><img id="image_preview"
@@ -455,7 +474,9 @@
                                     <div class="col-10">
                                         <label for="image_3" class="form-label">Image 3</label>
                                         <input type="file" class="form-control" id="image_3" name="image_3">
-                                        <div id="image_3_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_3') }}">Delete This Image</a></div>
+                                        <div id="image_3_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_3') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_3) }}" target="_blank"><img id="image_preview"
@@ -483,7 +504,9 @@
                                     <div class="col-10">
                                         <label for="image_4" class="form-label">Image 4</label>
                                         <input type="file" class="form-control" id="image_4" name="image_4">
-                                        <div id="image_4_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_4') }}">Delete This Image</a></div>
+                                        <div id="image_4_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_4') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_4) }}" target="_blank"><img id="image_preview"
@@ -510,7 +533,9 @@
                                     <div class="col-10">
                                         <label for="image_5" class="form-label">Image 5</label>
                                         <input type="file" class="form-control" id="image_5" name="image_5">
-                                        <div id="image_5_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_5') }}">Delete This Image</a></div>
+                                        <div id="image_5_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_5') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_5) }}" target="_blank"><img id="image_preview"
@@ -538,7 +563,9 @@
                                     <div class="col-10">
                                         <label for="image_6" class="form-label">Image 6</label>
                                         <input type="file" class="form-control" id="image_6" name="image_6">
-                                        <div id="image_6_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_6') }}">Delete This Image</a></div>
+                                        <div id="image_6_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_6') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_6) }}" target="_blank"><img id="image_preview"
@@ -565,7 +592,9 @@
                                     <div class="col-10">
                                         <label for="image_7" class="form-label">Image 7</label>
                                         <input type="file" class="form-control" id="image_7" name="image_7">
-                                        <div id="image_7_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_7') }}">Delete This Image</a></div>
+                                        <div id="image_7_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_7') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_7) }}" target="_blank"><img id="image_preview"
@@ -592,7 +621,9 @@
                                     <div class="col-10">
                                         <label for="image_8" class="form-label">Image 8</label>
                                         <input type="file" class="form-control" id="image_8" name="image_8">
-                                        <div id="image_8_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_8') }}">Delete This Image</a></div>
+                                        <div id="image_8_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_8') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_8) }}" target="_blank"><img id="image_preview"
@@ -619,7 +650,9 @@
                                     <div class="col-10">
                                         <label for="image_9" class="form-label">Image 9</label>
                                         <input type="file" class="form-control" id="image_9" name="image_9">
-                                        <div id="image_9_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_9') }}">Delete This Image</a></div>
+                                        <div id="image_9_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_9') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_9) }}" target="_blank"><img id="image_preview"
@@ -646,7 +679,9 @@
                                     <div class="col-10">
                                         <label for="image_10" class="form-label">Image 10</label>
                                         <input type="file" class="form-control" id="image_10" name="image_10">
-                                        <div id="image_10_help" class="form-text">Recommended Size: 700px x 700px <a href="{{ url('admin/product_delete_image/'.$product->id.'/image_10') }}">Delete This Image</a></div>
+                                        <div id="image_10_help" class="form-text">Recommended Size: 700px x 700px <a
+                                                href="{{ url('admin/product_delete_image/' . $product->id . '/image_10') }}">Delete
+                                                This Image</a></div>
                                     </div>
                                     <div class="col-2">
                                         <a href="{{ url($product->image_10) }}" target="_blank"><img id="image_preview"

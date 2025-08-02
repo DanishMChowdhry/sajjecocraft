@@ -30,7 +30,7 @@ use App\Http\Controllers\SiteSettingsController;
 use App\Http\Controllers\ContactRequestController;
 use App\Http\Controllers\DevelopersConcernController;
 
-Route::controller(MainPageController::class)
+Route::controller(MainPageController::class )
     ->middleware(['developersconcern'])
     ->group(function () {
         Route::get('/', 'index')->name('main_page.index');
@@ -39,7 +39,8 @@ Route::controller(MainPageController::class)
         Route::get('blogs', 'blogs')->name('main_page.blogs');
         Route::get('blogs/{slug}', 'blogDetails')->name('main_page.blog');
         Route::get('contact_us', 'contact_us')->name('main_page.contact');
-        Route::get('shop/{slug}', 'productDetail')->name('main_page.product_detail');
+        Route::get('shop/{slug
+           }', 'productDetail')->name('main_page.product_detail');
         Route::get('faq', 'faq')->name('main_page.faq');
         Route::get('policy/{slug}', 'policy')->name('main_page.policy');
         Route::get('shop/category/{slug}', 'categoryProducts')->name('main_page.category_products');
@@ -59,6 +60,8 @@ Route::controller(MainPageController::class)
         Route::post('/invoices/from-cart', [InvoiceController::class, 'storeFromCartAndGeneratePDF'])->name('invoices.fromCart');
         
         Route::get('/invoice/{order_id}', [InvoiceController::class, 'downloadInvoice']);
+
+        Route::post('invoices/whatsapp_share',[InvoiceController::class,'shareInvoiceOnWhatsapp'])->name('share_invoice_on_whatsapp');
 
     });
 

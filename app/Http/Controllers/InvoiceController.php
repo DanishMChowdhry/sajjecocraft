@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomerEnquiry;
 use Barryvdh\DomPDF\Facade\Pdf; // Import the facade here
 use Gloudemans\Shoppingcart\Facades\Cart; // Make sure this is included
+use Illuminate\Support\Facades\File;
 
 class InvoiceController extends Controller
 {
@@ -256,6 +257,116 @@ class InvoiceController extends Controller
             return back()->with('error', 'Something went wrong. Please try again. ' . $e->getMessage());
         }
     }
+  public function shareInvoiceOnWhatsapp(Request $request)
+{
+    $cartItems = Cart::content();
+
+    if ($cartItems->isEmpty()) {
+        return back()->with('error', 'Your cart is empty.');
+    }
+
+    $enquiryId = time(); // Unique ID based on timestamp
+    $guestName = $request->input('name', 'Guest');
+    $guestPhone = $request->input('phone', 'N/A');
+    $guestAddress = $request->input('address', 'N/A');
+
+    $productsData = [];
+    $total = 0;
+
+    foreach ($cartItems as $item) {
+        $productTotal = $item->price * $item->qty;
+
+        $productsData[] = [
+            'name' => $item->name,
+            'main_image' => $item->options->image ?? null,
+            'price' => $item->options->selling_price ?? $item->price,
+            'discounted_price' => $item->price,
+            'quantity' => $item->qty,
+            'total' => $productTotal,
+        ];
+
+        $total += $productTotal;
+    }
+
+    try {
+        // Save enquiry entries
+        foreach ($cartItems as $item) {
+            $enquiry = new CustomerEnquiry();
+            $enquiry->customer_id = 0;
+            $enquiry->enquiry_id = $enquiryId;
+            $enquiry->product_id = $item->id;
+            $enquiry->product_name = $item->name;
+            $enquiry->product_image = $item->options->image ?? null;
+            $enquiry->price = $item->price;
+            $enquiry->quantity = $item->qty;
+            $enquiry->subtotal = $item->price * $item->qty;
+            $enquiry->guest_name = $guestName;
+            $enquiry->guest_phone = $guestPhone;
+            $enquiry->guest_address = $guestAddress;
+            $enquiry->save();
+        }
+
+        // Calculate invoice values
+        $subtotal = $total;
+        $gstAmount = $subtotal * 0.18;
+        $totalWithGST = $subtotal + $gstAmount;
+        $totalInWords = NumberToWords::convertNumberToWords($totalWithGST); // Adjust as per your implementation
+
+        $invoice = (object)[
+            'order_id' => $enquiryId,
+            'customer_name' => $guestName,
+            'product_json' => json_encode($productsData),
+            'created_at' => now(),
+        ];
+
+        // Generate PDF
+        $pdf = Pdf::loadView('pdf.invoice', [
+            'invoice' => $invoice,
+            'totalInWords' => $totalInWords,
+            'subtotal' => $subtotal,
+            'totalWithGST' => $totalWithGST,
+            'gstAmount' => $gstAmount,
+        ]);
+
+        // Ensure folder exists
+        $folderPath = public_path('invoices');
+        if (!File::exists($folderPath)) {
+            File::makeDirectory($folderPath, 0775, true);
+        }
+
+        // Save PDF
+        $fileName = 'invoice_' . $enquiryId . '.pdf';
+        $filePath = $folderPath . '/' . $fileName;
+        $pdf->save($filePath);
+
+        // Public URL to PDF
+        $invoiceUrl = asset('invoices/' . $fileName);
+
+        // Destroy cart after saving
+        Cart::destroy();
+
+        // Send WhatsApp message (replace this block with real API integration)
+        $whatsappMessage = "Hi $guestName, your invoice is ready.\nView/download it here: $invoiceUrl";
+
+
+        // URL encode the message
+        $encodedMessage = urlencode($whatsappMessage);
+
+        // Create WhatsApp URL (no phone number)
+        $whatsappUrl = "https://wa.me/?text=$encodedMessage";
+
+        // Redirect to WhatsApp
+        return redirect($whatsappUrl);
+
+        return back()->with('success', 'Invoice generated and shared via WhatsApp link.');
+
+    } catch (\Exception $e) {
+        return back()->with('error', 'Something went wrong. ' . $e->getMessage());
+    }
+}
+
+
+    
 
 
 
