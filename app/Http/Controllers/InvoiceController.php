@@ -340,7 +340,7 @@ class InvoiceController extends Controller
         $pdf->save($filePath);
 
         // Public URL to PDF
-        $invoiceUrl = asset('invoices/' . $fileName);
+        $invoiceUrl = asset('public/invoices/' . $fileName);
 
         // Destroy cart after saving
         Cart::destroy();
