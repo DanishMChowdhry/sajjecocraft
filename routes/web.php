@@ -29,6 +29,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\SiteSettingsController;
 use App\Http\Controllers\ContactRequestController;
 use App\Http\Controllers\DevelopersConcernController;
+use App\Http\Controllers\CouponController;
 
 Route::controller(MainPageController::class )
     ->middleware(['developersconcern'])
@@ -106,6 +107,7 @@ Route::prefix('admin')
 
         Route::post('generate_invoice_pdf', [InvoiceController::class, 'generateInvoicePDF'])->name('generate_invoice_pdf');
         Route::get('/enquiries/{enquiryId}/download-pdf', [EnquiryController::class, 'downloadPdf'])->name('enquiries.downloadPdf');
+        Route::resource('coupons', CouponController::class);
 
     });
 
