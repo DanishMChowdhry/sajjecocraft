@@ -76,7 +76,7 @@
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('invoices.index') }}">Invoice</a>
-                <a class="dropdown-item" href="{{ route('enquiry.index') }}">Enquiry</a>
+                <a class="dropdown-item" href="{{ route('enquiry.index') }}">Quotation</a>
             </div>
         </li>
         <li class="nav-item dropdown">
