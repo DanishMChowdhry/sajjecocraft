@@ -9,9 +9,10 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    {{-- <div class="card-header">{{ __('Customers') }}
-                    <a href="{{ route('customers.create') }}" class="btn btn-primary btn-sm float-end">Create</a>
-                </div> --}}
+                    <div class="card-header">{{ __('Customers') }}
+                        {{-- <a href="{{ route('customers.create') }}" class="btn btn-primary btn-sm float-end">Create</a> --}}
+                        <a href="{{ route('customers.export') }}" class="btn btn-primary btn-sm float-end">Export Excel</a>
+                    </div>
 
                     <div class="card-body">
                         @include('partial.alert')

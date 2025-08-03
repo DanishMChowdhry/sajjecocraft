@@ -108,6 +108,7 @@ Route::prefix('admin')
         Route::post('generate_invoice_pdf', [InvoiceController::class, 'generateInvoicePDF'])->name('generate_invoice_pdf');
         Route::get('/enquiries/{enquiryId}/download-pdf', [EnquiryController::class, 'downloadPdf'])->name('enquiries.downloadPdf');
         Route::resource('coupons', CouponController::class);
+        Route::get('/customers/export', [CustomerController::class, 'export'])->name('customers.export');
 
     });
 
